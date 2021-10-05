@@ -26,10 +26,11 @@
 
 ### 추가적으로 개발하면 좋을 점 & 수정 점
 - 사고 후 클릭 시 CCTV 보이게 하기
-- 시작화면에서 GPS로 사용자 위치 센싱 --------> 성공
 - 사용자 위치에서 5km 내에 있으면 알림
 - 두 번 클릭이 아니더라도 출발지, 목적지 마크 
-- zoom 사이즈 조절 --------------------------> 성공
+- 한영 버전
+- CCTV 현황 - 지금 어느정도의 CCTV를 관리하고 있는지
+- Firebase 배포
 ## netlify로 web hosting
 네이버 지도 api 사용시 웹 url 적용, 해당 url에서 api 사용 가능   
 현재 iceboat.netlify.app iceboat.netlify.app/set_start_seoul.html iceboat.netlify.app/set_start_busan.html 127.0.0.1 등록   

@@ -377,7 +377,6 @@
       var position_car = new naver.maps.LatLng(37.554646,126.9690018);// 광화문? 서울역인거같음..
       var position_cctv1 = new naver.maps.LatLng(37.522583, 126.961311); // 세종대로4거리 cctv
       var position_cctv2 = new naver.maps.LatLng(37.515105, 126.996357); //청계2가
-      //var position_cctv3 = new naver.maps.LatLng(37.569834, 127.002028); //청계2가
 
       var start_point = 0;
       var end_point = 0;
@@ -463,27 +462,9 @@
           console.log('in2');
           return 15
         }
-        /*if(width>length){
-          if (width > 0.025){
-            console.log('in1');
-            return 14;
-          } else{
-            console.log('in2');
-            return 14;
-          }
-        } else{
-          if (length > 0.025){
-            console.log('in3');
-            return 13;
-          } else{
-            console.log('in4');
-            return 15;
-          }
-        }*/
       }
 
     function reset(){
-
       var HOME_PATH = window.HOME_PATH || '.';
 
       var map = new naver.maps.Map('map', {

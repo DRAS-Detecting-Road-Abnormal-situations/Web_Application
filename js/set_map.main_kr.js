@@ -1,7 +1,7 @@
 var position_car = new naver.maps.LatLng(37.554646, 126.9690018); // 광화문? 서울역인거같음..
 var position_cctv1 = new naver.maps.LatLng(37.522583, 126.961311); // 세종대로4거리 cctv
 var position_cctv2 = new naver.maps.LatLng(37.515105, 126.996357); //청계2가
-
+var cctv_list = [];
 var start_point = 0;
 var end_point = 0;
 

@@ -209,4 +209,15 @@ function reset() {
   var marker_cctv2 = new naver.maps.Marker(markerOptions_cctv2);
   var marker_start = new naver.maps.Marker(markerOptions_start);
   var marker_end = new naver.maps.Marker(markerOptions_end);
+
+  naver.maps.Event.addListener(marker_cctv1, 'click', getClickHandler('0'));
+  naver.maps.Event.addListener(marker_cctv2, 'click', getClickHandler('0'));
+  naver.maps.Event.addListener(marker_car, 'click', getClickHandler('0'));
+    function getClickHandler(seq) {
+        return function (e) {
+            console.log(seq);
+            console.log(e);
+
+        }
+    }
 }

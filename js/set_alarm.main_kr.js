@@ -220,4 +220,5 @@ function raise_notification(type, image_name) {
             infowindow.open(map, marker);
         }
     }); //cctv클릭시 사고사진 출력
+    
 }

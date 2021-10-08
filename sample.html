@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>map</title>
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=rpbl1d7siz">
@@ -34,7 +33,7 @@
                 "D0": [MARKER_SPRITE_X_OFFSET * 3, 0],
             };
 
-        var map = new naver.maps.Map('map', {
+        var map = new naver.maps.Map('map', {// 메인 지도
             center: new naver.maps.LatLng(37.3595704, 127.105399),
             zoom: 10
         });
@@ -48,7 +47,7 @@
         var markers = [],
             infoWindows = [];
 
-        for (var key in MARKER_SPRITE_POSITION) {
+        for (var key in MARKER_SPRITE_POSITION) { // 지도 마크하기
 
             var position = new naver.maps.LatLng(
                 southWest.lat() + latSpan * Math.random(),
@@ -67,7 +66,7 @@
                 zIndex: 100
             });
 
-            var infoWindow = new naver.maps.InfoWindow({
+            var infoWindow = new naver.maps.InfoWindow({ // 화면 추가
                 content: '<div style="width:150px;text-align:center;padding:10px;">The Letter is <b>"' + key
                     .substr(0, 1) + '"</b>.</div>'
             });
@@ -76,12 +75,11 @@
             infoWindows.push(infoWindow);
         };
 
-        naver.maps.Event.addListener(map, 'idle', function () {
+        naver.maps.Event.addListener(map, 'idle', function () { //CHECK
             updateMarkers(map, markers);
         });
 
         function updateMarkers(map, markers) {
-
             var mapBounds = map.getBounds();
             var marker, position;
 
@@ -111,6 +109,8 @@
         // 해당 마커의 인덱스를 seq라는 클로저 변수로 저장하는 이벤트 핸들러를 반환합니다.
         function getClickHandler(seq) {
             return function (e) {
+                console.log(seq);
+                console.log(e);
                 var marker = markers[seq],
                     infoWindow = infoWindows[seq];
 
@@ -127,5 +127,4 @@
         }
     </script>
 </body>
-
 </html>

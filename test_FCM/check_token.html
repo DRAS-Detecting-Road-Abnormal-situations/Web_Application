@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>ICEBOAT</title>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  </script>
+</head>
+
+<body>
+  <h1 id="token">...</h1>
+  <input type='button' value='get_token' onclick='get_token()' />
+
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRR9w1Z7KQddnMwfrFIsJqUpmvbw-wNC4&signed_in=true&callback=initMap"
+    async defer></script>
+  <script src="resources/scripts/axure/ios.js"></script>
+  <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=rpbl1d7siz"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
+  <script>
+  var test_x = 37.5655;
+var test_y = 126.97;
+var cctv1_image = 1;
+var cctv2_image = 1;
+// Initialize Firebase
+var config = { //CHECK 자신의 키로 바꾸기
+    apiKey: "AIzaSyDFDD8X7EgY7Vh1ySVO8sAodI6dOAPRmKQ",
+    authDomain: "dras-cc7ae.firebaseapp.com",
+    projectId: "dras-cc7ae",
+    storageBucket: "dras-cc7ae.appspot.com",
+    messagingSenderId: "203359181923",
+    appId: "1:203359181923:web:5160bc46d5f8704c152c56",
+    measurementId: "G-60JQQGV270"
+  };
+firebase.initializeApp(config);
+
+const messaging = firebase.messaging();
+var token_value = '';
+//token값 알아내기
+messaging
+    .requestPermission()
+    .then(function () {
+        console.log("Have permission");
+        return messaging.getToken();
+    })
+    .then(function (token) {
+        console.log(token);
+        document.getElementById('token').innerHTML = token;
+        document.getElementById('token').innerText = token;
+        token_value = token;
+    })
+    .catch(function (arr) {
+        console.log("Error Occured");
+    });
+function get_token(){
+    alert(token_value);
+}
+messaging.onMessage(function (payload) {
+    if (payload.data.type == "acc") {
+        document.getElementById("u73_text").innerHTML = payload.data.title;
+        document.getElementById("u72_text").innerHTML = payload.data.body;
+        setTimeout(function () {
+            document.getElementById("u75_image").src =
+                "http://chaeyoung.pythonanywhere.com/media/situation_image/" +
+                payload.data.image_name +
+                ".png";
+            //http://chaeyoung.pythonanywhere.com/media/situation_image/1212132115.png
+            console.log("onMessage: acc ", payload);
+            //cctv1_image = payload.data.image_name;
+            check_range(
+                payload.data.cctv_id_x,
+                payload.data.cctv_id_y,
+                payload.data.type,
+                payload.data.image_name
+            ); // cctv 범위 확인해주는 함수
+        }, 3000);
+    } else if (payload.data.type == "ob") {
+        document.getElementById("u66_text").innerHTML = payload.data.title;
+        document.getElementById("u65_text").innerHTML = payload.data.body;
+        setTimeout(function () {
+            document.getElementById("u68_image").src =
+                "http://chaeyoung.pythonanywhere.com/media/situation_image/" +
+                payload.data.image_name +
+                ".png";
+            console.log("onMessage: ob ", payload);
+            //cctv2_image = payload.data.image_name;
+            check_range(
+                payload.data.cctv_id_x,
+                payload.data.cctv_id_y,
+                payload.data.type,
+                payload.data.image_name
+            ); // cctv 범위 확인해주는 함수
+        }, 3000);
+    }
+});
+  </script>
+</body>
+
+</html>

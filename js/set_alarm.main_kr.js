@@ -34,9 +34,17 @@ messaging
     });
 
 messaging.onMessage(function (payload) {
+    if (state == false){
+        return 
+    }
+
+    // 알림창 설정
     if (payload.data.type == "acc") {
         document.getElementById("u73_text").innerHTML = payload.data.title;
         document.getElementById("u72_text").innerHTML = payload.data.body;
+        cctv1_image = "http://chaeyoung.pythonanywhere.com/media/situation_image/" +
+        payload.data.image_name +
+        ".png";
         setTimeout(function () {
             document.getElementById("u75_image").src =
                 "http://chaeyoung.pythonanywhere.com/media/situation_image/" +
@@ -55,6 +63,9 @@ messaging.onMessage(function (payload) {
     } else if (payload.data.type == "ob") {
         document.getElementById("u66_text").innerHTML = payload.data.title;
         document.getElementById("u65_text").innerHTML = payload.data.body;
+        cctv2_image = "http://chaeyoung.pythonanywhere.com/media/situation_image/" +
+        payload.data.image_name +
+        ".png";
         setTimeout(function () {
             document.getElementById("u68_image").src =
                 "http://chaeyoung.pythonanywhere.com/media/situation_image/" +
@@ -106,7 +117,7 @@ function check_range(cctv_id_x, cctv_id_y, type, image_name) {
     } 
 }
 
-function raise_notification(type, image_name) {
+function raise_notification(type) {
     console.log("알림확인", type);
     if (type == "acc") {
         document.getElementById("u74_text").style.visibility = "visible";
@@ -157,6 +168,7 @@ function raise_notification(type, image_name) {
         var infowindow = new naver.maps.InfoWindow({
             content: contentString_cctv1,
         });
+
         naver.maps.Event.addListener(marker, "click", function (e) {
             if (infowindow.getMap()) {
                 infowindow.close();
@@ -164,6 +176,7 @@ function raise_notification(type, image_name) {
                 infowindow.open(map, marker);
             }
         }); //cctv 클릭시 사고사진 출력
+        
         //색 바꿔주기
     } else if (type == "ob") {
         document.getElementById("u67_text").style.visibility = "visible";

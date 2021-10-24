@@ -2,6 +2,8 @@ var test_x = 37.5655;
 var test_y = 126.97;
 var cctv1_image = 1;
 var cctv2_image = 1;
+var state = false // CHECK true: 경로 입력 했을 때/ false: 경로 입력 안했을 때
+
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyBfLYQieTSNFJVghLmwPidH9eMLJ8sgafA",
@@ -221,4 +223,8 @@ function raise_notification(type, image_name) {
         }
     }); //cctv클릭시 사고사진 출력
     
+}
+
+function cancel_route(){
+    state = false;
 }

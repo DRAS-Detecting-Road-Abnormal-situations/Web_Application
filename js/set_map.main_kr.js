@@ -4,15 +4,15 @@ var position_cctv2 = new naver.maps.LatLng(37.515105, 126.996357); //청계2가
 var cctv_list = [];
 var start_point = 0;
 var end_point = 0;
-
 var start_x = 37.55301699999999; //출발지 위도
 var start_y = 126.972646; //출발지 경도
 var end_x = 37.570432; //도착지 위도
 var end_y = 126.9690019; //도착지 경도
-var cctv1_color = 'CCTV3.png'; //cctv 색 변수로 바꾸기
-var cctv2_color = 'CCTV3.png'; //cctv 색 변수로 바꾸기
+var cctv1_color = 'CCTV1.png'; //cctv 색 변수로 바꾸기
+var cctv2_color = 'CCTV1.png'; //cctv 색 변수로 바꾸기
+
 function change() {
-  console.log('he');
+  state = true;
   start_point = document.getElementById("u53_data").innerHTML; //출발지
   end_point = document.getElementById("u54_data").innerHTML; //도착지
   console.log(start_point, end_point);
@@ -26,6 +26,7 @@ function initMap() {
       lng: 78.4800
     }
   });
+
   var geocoder = new google.maps.Geocoder();
 
   document.getElementById('submit').addEventListener('click', function () {
@@ -86,12 +87,16 @@ function set_zoom() {
   console.log(center_x, center_y);
   console.log('확인', width, length);
   max_num = Math.max(width, length);
+  console.log(max_num);
   position_car = new naver.maps.LatLng(center_x, center_y);
-  if (max_num > 0.019) {
+  if (max_num > 0.08) {
     console.log('in1');
-    return 14
-  } else {
+    return 12
+  } else if (max_num > 0.05){
     console.log('in2');
+    return 13
+  } else{
+    console.log('in3');
     return 15
   }
 }

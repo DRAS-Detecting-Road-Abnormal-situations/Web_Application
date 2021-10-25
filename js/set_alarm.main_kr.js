@@ -4,15 +4,14 @@ var cctv1_image = 1;
 var cctv2_image = 1;
 // Initialize Firebase
 var config = {
-    apiKey: "AIzaSyBfLYQieTSNFJVghLmwPidH9eMLJ8sgafA",
-    authDomain: "push-server-56a52.firebaseapp.com",
-    databaseURL: "https://push-server-56a52.firebaseio.com",
-    projectId: "push-server-56a52",
-    storageBucket: "push-server-56a52.appspot.com",
-    messagingSenderId: "967213415011",
-    appId: "AIzaSyBfLYQieTSNFJVghLmwPidH9eMLJ8sgafA",
-    measurementId: "G-MDVS63TX7X",
-};
+    apiKey: "AIzaSyDFDD8X7EgY7Vh1ySVO8sAodI6dOAPRmKQ",
+    authDomain: "dras-cc7ae.firebaseapp.com",
+    projectId: "dras-cc7ae",
+    storageBucket: "dras-cc7ae.appspot.com",
+    messagingSenderId: "203359181923",
+    appId: "1:203359181923:web:5160bc46d5f8704c152c56",
+    measurementId: "G-60JQQGV270"
+  };
 firebase.initializeApp(config);
 
 const messaging = firebase.messaging();

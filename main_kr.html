@@ -57,7 +57,8 @@
 
 <body>
   <div id="base" class="">
-    <!-- Unnamed (Inline Frame) -->
+    
+    <!-- start_map (Inline Frame) -->
     <div id="u32" class="ax_default">
       <iframe id="u32_input" scrolling="auto" frameborder="1" webkitallowfullscreen mozallowfullscreen
         allowfullscreen></iframe>
@@ -69,6 +70,13 @@
         mozallowfullscreen allowfullscreen></iframe>
     </div>
 
+    <!-- CCTV STATE 페이지 html 불러오기-->
+    <div id='u78' style="display: none; visibility: hidden"> 
+    <iframe id="u78_input" scrolling="auto" frameborder="1" webkitallowfullscreen mozallowfullscreen
+        allowfullscreen src="./cctv_state.html"></iframe>
+    </div>
+
+    
     <!-- user_start (Group) -->
     <div id="u34" class="ax_default ax_default_hidden" data-label="user_start" style="display: none; visibility: hidden"
       data-left="910" data-top="-11" data-width="490" data-height="611">
@@ -95,7 +103,7 @@
           <p></p>
         </div>
       </div>
-
+      
       <!-- 목적지 (Rectangle) -->
       <div id="u38" class="ax_default shape" data-label="목적지">
         <img id="u38_img" class="img" src="images/index/목적지_u6.svg" />
@@ -174,6 +182,7 @@
       </div>
     </div>
 
+
     <!-- Rectangle 2 (Shape) -->
     <div id="u49" class="ax_default shape" data-label="Rectangle 2">
       <img id="u49_img" class="img" src="images/index/rectangle_2_u17.svg" />
@@ -193,7 +202,7 @@
       </div>
 
       <!-- bottomBar_CCTV정보 -->
-      <div id="u52" class="ax_default shape">
+      <div id="u52" class="ax_default shape" onclick="show_cctvinfo()">
         <div id="u52_div" class=""></div>
         <div id="u52_text" class="text">
           <p><span>CCTV 정보</span></p>
@@ -376,7 +385,12 @@
           <p></p>
         </div>
       </div>
+
+      
+    
+
     </div>
+
   </div>
   <div id="floating-panel">
     <input id="submit" type="button" value="Geocode" />

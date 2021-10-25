@@ -1,3 +1,5 @@
+const { func } = require("joi");
+
 var position_car = new naver.maps.LatLng(37.554646, 126.9690018); // 광화문? 서울역인거같음..
 var position_cctv1 = new naver.maps.LatLng(37.522583, 126.961311); // 세종대로4거리 cctv
 var position_cctv2 = new naver.maps.LatLng(37.515105, 126.996357); //청계2가
@@ -16,6 +18,12 @@ function change() {
   start_point = document.getElementById("u53_data").innerHTML; //출발지
   end_point = document.getElementById("u54_data").innerHTML; //도착지
   console.log(start_point, end_point);
+}
+
+function show_cctvinfo(){
+  console.log('in_check');
+  document.getElementById("u78").style.visibility = "visible";
+  document.getElementById("u78").style.display = "block";
 }
 
 function initMap() {

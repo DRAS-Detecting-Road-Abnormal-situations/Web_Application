@@ -24,6 +24,26 @@
   width:1396px;
   height:596px;
 }
+
+#u78 {
+  border-width:2px;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:1396px;
+  height:596px;
+  overflow:auto;
+}
+#u78_input {
+  border-width:2px;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:1396px;
+  height:596px;
+  overflow:auto;
+}
+
 #u32_input {
   border-width:2px;
   position:absolute;

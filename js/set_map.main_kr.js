@@ -16,6 +16,8 @@ var cctc1_image = '';
 var cctv2_image= '';
 
 function change() {
+  document.getElementById("u78").style.visibility = "hidden";
+  document.getElementById("u78").style.display = "none";
   state = true;
   start_point = document.getElementById("u53_data").innerHTML; //출발지
   end_point = document.getElementById("u54_data").innerHTML; //도착지

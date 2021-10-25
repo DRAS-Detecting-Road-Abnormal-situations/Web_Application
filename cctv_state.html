@@ -64,24 +64,13 @@
   <div id="map" style="width: 1500px; height:800px;"></div>
   <script>
     var position = new naver.maps.LatLng(37.515105, 126.996357); //서울역 현재위치 default값
-    var position_car = new naver.maps.LatLng(37.515105, 126.996357)
     var position1 = new naver.maps.LatLng(37.522583, 126.961311); // 세종대로 사거리 CCTV
     var position2 = new naver.maps.LatLng(37.515105, 126.996357); // 청계2가 CCTV
     var map = new naver.maps.Map('map', {
-      center: new naver.maps.LatLng(37.515105, 126.996357),
-      zoom: 14,
+      center: new naver.maps.LatLng(37.5163304, 126.9793625),
+      zoom: 13,
       mapTypeId: naver.maps.MapTypeId.NORMAL
     });
-    var markerOptions_car = {
-      position: position_car,
-      map: map,
-      icon: {
-        url: './images/CAR1.png',
-        size: new naver.maps.Size(21, 38),
-        origin: new naver.maps.Point(0, 0),
-        anchor: new naver.maps.Point(11, 35)
-      }
-    };
 
     var markerOptions1 = {
       position: position1,
@@ -103,11 +92,37 @@
         anchor: new naver.maps.Point(11, 35)
       }
     };
+    var loc_list = [[37.535254, 126.9743843], [37.522583, 126.961311], [37.515105, 126.996357], [37.5334844, 126.9888039],
+    [37.5072073, 127.008545], [37.5442377, 126.953785], [37.5291282, 127.0339508], [37.522185, 127.0188446], [37.5191897, 127.028801],
+[37.5156496, 127.0195313], [37.5108839, 127.0205613], [37.4989001, 126.985199],
+[37.5123817, 126.9570465], [37.5145604, 126.9302674], [37.5100669, 126.9100113],
+[37.508569, 126.8911286], [37.5035305, 127.0497437]]
+    for (var i = 0; i<loc_list.length; i++) {
+      var marker_cctv = {
+      position: new naver.maps.LatLng(loc_list[i][0], loc_list[i][1]),
+      map: map,
+      icon: {
+        url: './images/CCTV1.png',
+        size: new naver.maps.Size(29, 29),
+        origin: new naver.maps.Point(0, 0),
+        anchor: new naver.maps.Point(11, 35)
+      }
+    };
+    var marker_cctv_make = new naver.maps.Marker(marker_cctv);
+    }
 
     var marker_cctv1 = new naver.maps.Marker(markerOptions1);
     var marker_cctv2 = new naver.maps.Marker(markerOptions2);
-    var car = new naver.mpas.Marker(markerOptions_car);
     var infowindow = new naver.maps.InfoWindow();
+
+    naver.maps.Event.addListener(map, 'click', getClickHandler('in'));
+
+    function getClickHandler(seq) {
+        return function (e) {
+          console.log(seq);
+          console.log(e);
+        }
+    }
   </script>
 
   <script src="resources/scripts/axure/ios.js"></script>

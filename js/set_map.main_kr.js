@@ -6,18 +6,21 @@ var position_cctv2 = new naver.maps.LatLng(37.515105, 126.996357); //청계2가
 var cctv_list = [];
 var start_point = 0;
 var end_point = 0;
-
 var start_x = 37.55301699999999; //출발지 위도
 var start_y = 126.972646; //출발지 경도
 var end_x = 37.570432; //도착지 위도
 var end_y = 126.9690019; //도착지 경도
-var cctv1_color = 'CCTV3.png'; //cctv 색 변수로 바꾸기
-var cctv2_color = 'CCTV3.png'; //cctv 색 변수로 바꾸기
+var cctv1_color = 'CCTV1.png'; //cctv 색 변수로 바꾸기
+var cctv2_color = 'CCTV1.png'; //cctv 색 변수로 바꾸기
+var cctc1_image = '';
+var cctv2_image= '';
+
 function change() {
-  console.log('he');
+  state = true;
   start_point = document.getElementById("u53_data").innerHTML; //출발지
   end_point = document.getElementById("u54_data").innerHTML; //도착지
   console.log(start_point, end_point);
+  geocodeAddress(geocoder, map);
 }
 
 function show_cctvinfo(){
@@ -34,12 +37,16 @@ function initMap() {
       lng: 78.4800
     }
   });
+
   var geocoder = new google.maps.Geocoder();
 
   document.getElementById('submit').addEventListener('click', function () {
     geocodeAddress(geocoder, map);
   });
   document.getElementById('u47_text').addEventListener('click', function () {
+    geocodeAddress(geocoder, map);
+  });
+  document.getElementById('u47').addEventListener('click', function () {
     geocodeAddress(geocoder, map);
   });
 }
@@ -61,6 +68,7 @@ function geocodeAddress(geocoder, resultsMap) {
       alert('Geocode was not successful for the following reason: ' + status);
     }
   });
+
   geocoder.geocode({
     'address': end_point
   }, function (results, status) {
@@ -94,12 +102,16 @@ function set_zoom() {
   console.log(center_x, center_y);
   console.log('확인', width, length);
   max_num = Math.max(width, length);
+  console.log(max_num);
   position_car = new naver.maps.LatLng(center_x, center_y);
-  if (max_num > 0.019) {
+  if (max_num > 0.08) {
     console.log('in1');
-    return 14
-  } else {
+    return 12
+  } else if (max_num > 0.05){
     console.log('in2');
+    return 13
+  } else{
+    console.log('in3');
     return 15
   }
 }
@@ -218,13 +230,50 @@ function reset() {
   var marker_start = new naver.maps.Marker(markerOptions_start);
   var marker_end = new naver.maps.Marker(markerOptions_end);
 
-  naver.maps.Event.addListener(marker_cctv1, 'click', getClickHandler('0'));
-  naver.maps.Event.addListener(marker_cctv2, 'click', getClickHandler('0'));
-  naver.maps.Event.addListener(marker_car, 'click', getClickHandler('0'));
+  naver.maps.Event.addListener(marker_cctv1, 'click', getClickHandler('1'));
+  naver.maps.Event.addListener(marker_cctv2, 'click', getClickHandler('2'));
+
     function getClickHandler(seq) {
         return function (e) {
             console.log(seq);
-            console.log(e);
+            if(seq == '1'){
+              var contentString_cctv1 = [
+                '<div class="iw_inner">',
+                "   <h3>한강대교 북단 CCTV</h3>",
+                '   <p><img src="http://chaeyoung.pythonanywhere.com/media/situation_image/1010112418.png" width="200" height="113" alt="" class="thumb" /></p>', ,
+                "</div>",
+            ].join("");
+            var infowindow = new naver.maps.InfoWindow({
+                content: contentString_cctv1,
+            });
+            naver.maps.Event.addListener(marker_cctv1, "click", function (e) {
+                if (infowindow.getMap()) {
+                    infowindow.close();
+                } else {
+                    infowindow.open(map, marker_cctv1);
+                }
+            }); //cctv클릭시 사고사진 출력
+
+            }else if(seq == '2'){
+              var contentString_cctv2 = [
+                '<div class="iw_inner">',
+                "   <h3>반포대교 남단 CCTV</h3>",
+                '   <p><img src="http://chaeyoung.pythonanywhere.com/media/situation_image/1010112418.png" width="200" height="113" alt="" class="thumb" /></p>', ,
+                "</div>",
+            ].join("");
+            var infowindow = new naver.maps.InfoWindow({
+                content: contentString_cctv2,
+            });
+            naver.maps.Event.addListener(marker_cctv2, "click", function (e) {
+                if (infowindow.getMap()) {
+                    infowindow.close();
+                } else {
+                    infowindow.open(map, marker_cctv2);
+                }
+            }); //cctv클릭시 사고사진 출력
+            }
+
+            
 
         }
     }

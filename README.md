@@ -22,20 +22,7 @@
     첫번째 화면을 보여주는 html 파일로 자동차의 위치는 gecoding을 이용하여 사용자의 현재 위치를 마크하여 보여주고 지정된 CCTV 위치에서 5km 안에 있으면 해당 CCTV에서 알림이 오도록 개발을 할 예정
 - index.html 
     사용자가 '경로찾기' 클릭 후 출발지와 목적지를 입력하면 보여주는 화면과 하단의 입력, 출발지, 목적지 입력 부분이 구현
-### 추가적으로 개발하면 좋을 점 & 수정 점
-- 사고 후 클릭 시 CCTV 보이게 하기
-- 사용자 위치에서 5km 내에 있으면 알림
-- 두 번 클릭이 아니더라도 출발지, 목적지 마크 
-- 한영 버전
-- CCTV 현황 - 지금 어느정도의 CCTV를 관리하고 있는지
-- Firebase 배포
-## netlify로 web hosting
-네이버 지도 api 사용시 웹 url 적용, 해당 url에서 api 사용 가능   
-현재 iceboat.netlify.app iceboat.netlify.app/set_start_seoul.html iceboat.netlify.app/set_start_busan.html 127.0.0.1 등록   
-도메인 변경시 지도 api url 변경 필요.
 
 ### 폴더 설명
 - /sdk: firebase 키 값이 존재하는 폴더
 - /test_FCM: FCM을 확인할 수 있는 폴더
-
-### 참고한 사이트
